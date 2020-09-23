@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WSConvertisseur</name>
+    </assembly>
+    <members>
+        <member name="T:WSConvertisseur.Controllers.CurrencyController">
+            <summary>
+            The controller handling currencies' name and rate
+            </summary>
+        </member>
+        <member name="M:WSConvertisseur.Controllers.CurrencyController.#ctor">
+            <summary>
+            The constructor for the currency controller
+            </summary>
+        </member>
+        <member name="M:WSConvertisseur.Controllers.CurrencyController.GetAll">
+            <summary>
+            Get all currencies
+            </summary>
+            <returns>HTTP response</returns>
+            <response code="200"></response>
+        </member>
+        <member name="M:WSConvertisseur.Controllers.CurrencyController.GetById(System.Int32)">
+            <summary>
+            Get a specific currency
+            </summary>
+            <param name="id">The id of the currency</param>
+            <returns>HTTP response</returns>
+            <response code="200">When the id is found</response>
+            <response code="404">When the id is not found</response>
+        </member>
+        <member name="M:WSConvertisseur.Controllers.CurrencyController.Post(WSConvertisseur.Models.Currency)">
+            <summary>
+            Adds a new currency
+            </summary>
+            <param name="currency">The currency to be added</param>
+            <returns>HTTP response</returns>
+            <response code="201">When everything is fine</response>
+            <response code="400">When the data sent is invalid</response>
+        </member>
+        <member name="M:WSConvertisseur.Controllers.CurrencyController.Put(System.Int32,WSConvertisseur.Models.Currency)">
+            <summary>
+            Updates a currency
+            </summary>
+            <param name="id">The id of the currency</param>
+            <param name="currency">The new currency</param>
+            <returns>HTTP response</returns>
+            <response code="204">When everything is fine</response>
+            <response code="400">When the data sent is incorrect</response>
+            <response code="404">When the currency cannot be found</response>
+        </member>
+        <member name="M:WSConvertisseur.Controllers.CurrencyController.Delete(System.Int32)">
+            <summary>
+            Deletes a currency
+            </summary>
+            <param name="id">The id of the currency</param>
+            <returns>HTTP response</returns>
+            <response code="204">When everything is fine</response>
+            <response code="404">When the currency cannot be found</response>
+        </member>
+        <member name="T:WSConvertisseur.Models.Currency">
+            <summary>
+            Model of a currency
+            </summary>
+        </member>
+        <member name="P:WSConvertisseur.Models.Currency.Id">
+            <summary>
+            The id of the currency
+            </summary>
+        </member>
+        <member name="P:WSConvertisseur.Models.Currency.Name">
+            <summary>
+            The name of the currency
+            </summary>
+        </member>
+        <member name="P:WSConvertisseur.Models.Currency.Rate">
+            <summary>
+            The rate of a currency (compared to dollars)
+            </summary>
+        </member>
+        <member name="M:WSConvertisseur.Models.Currency.#ctor">
+            <summary>
+            Constructor of the currency model
+            </summary>
+        </member>
+        <member name="M:WSConvertisseur.Models.Currency.#ctor(System.Int32,System.String,System.Double)">
+            <summary>
+            Constructor of the currency model.
+            Set up the attributes.
+            </summary>
+            <param name="id">The id of the currency</param>
+            <param name="name">The name of the currency</param>
+            <param name="rate">The rate of the currency</param>
+        </member>
+    </members>
+</doc>
