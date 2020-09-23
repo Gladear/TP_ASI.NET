@@ -13,5 +13,11 @@ namespace ClientConvertisseurV2.Service
             var currency = await WSService.GetCurrencyAsync(currencyId);
             return amount * currency.Rate;
         }
+        
+        internal async static Task<double> ConvertToEuros(int currencyId, double amount)
+        {
+            var currency = await WSService.GetCurrencyAsync(currencyId);
+            return amount / currency.Rate;
+        }
     }
 }

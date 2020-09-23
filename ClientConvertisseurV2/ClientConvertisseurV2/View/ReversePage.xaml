@@ -1,0 +1,26 @@
+﻿<Page
+    x:Class="ClientConvertisseurV2.View.ReversePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ClientConvertisseurV2"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    DataContext="{Binding Reverse, Source={StaticResource Locator}}">
+
+    <RelativePanel HorizontalAlignment="Center" Width="400">
+        <TextBlock Name="LabelTitle" FontSize="36">Convertisseur</TextBlock>
+
+        <TextBlock Name="LabelAmountFrom" Margin="0,16,0,0" FontSize="16" RelativePanel.Below="LabelTitle" RelativePanel.AlignHorizontalCenterWithPanel="True">Montant en devise</TextBlock>
+        <TextBox Text="{Binding AmountFrom, Mode=TwoWay}" Name="AmountFrom" Width="300" Margin="0,8,0,0" RelativePanel.Below="LabelAmountFrom" RelativePanel.AlignHorizontalCenterWithPanel="True" />
+
+        <TextBlock Name="LabelCurrency" Margin="0,16,0,0" FontSize="16" RelativePanel.Below="AmountFrom" RelativePanel.AlignHorizontalCenterWithPanel="True">Devise</TextBlock>
+        <ComboBox x:Name="Currency" ItemsSource="{Binding ComboBoxCurrencies}" SelectedItem="{Binding SelectedCurrency, Mode=TwoWay}" DisplayMemberPath="Name" Width="300" Margin="0,8,0,0" RelativePanel.Below="LabelCurrency" RelativePanel.AlignHorizontalCenterWithPanel="True"/>
+
+        <Button Command="{Binding BtnSetConversion}" Name="ButtonConvert" Width="300" Margin="0,16,0,0" FontSize="16" RelativePanel.Below="Currency" RelativePanel.AlignHorizontalCenterWithPanel="True">Convertir</Button>
+
+        <TextBlock Name="LabelAmountTo" Margin="0,16,0,0" FontSize="16" RelativePanel.Below="ButtonConvert" RelativePanel.AlignHorizontalCenterWithPanel="True">Montant en Euros</TextBlock>
+        <TextBox Name="AmountTo" Text="{Binding AmountTo, Mode=OneWay}" IsReadOnly="True" Width="300" Margin="0,8,0,0" RelativePanel.Below="LabelAmountTo" RelativePanel.AlignHorizontalCenterWithPanel="True"/>
+    </RelativePanel>
+</Page>
