@@ -27,9 +27,9 @@ namespace WSConvertisseur.Controllers
         public CurrencyController()
         {
             _currencies = new List<Currency>(3);
-            _currencies.Add(new Currency(0, "Euro", 1.1));
+            _currencies.Add(new Currency(0, "Euro", 1.0));
             _currencies.Add(new Currency(1, "Franc Suisse", 1.3));
-            _currencies.Add(new Currency(2, "Dollar", 1));
+            _currencies.Add(new Currency(2, "Dollar", 0.9));
         }
 
         /// <summary>
