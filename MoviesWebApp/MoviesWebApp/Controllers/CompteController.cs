@@ -7,12 +7,19 @@ using MoviesWebApp.Models.Repository;
 
 namespace MoviesWebApp.Controllers
 {
+    /// <summary>
+    /// Controller to manage accounts.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class CompteController : ControllerBase
     {
         private readonly IDataRepository<Compte> _dataRepository;
 
+        /// <summary>
+        /// Constructor of CompteController.
+        /// </summary>
+        /// <param name="repository">The data repository</param>
         public CompteController(IDataRepository<Compte> repository)
         {
             _dataRepository = repository;
@@ -73,7 +80,7 @@ namespace MoviesWebApp.Controllers
         }
 
         /// <summary>
-        /// Updated an account.
+        /// Update an account.
         /// </summary>
         /// <param name="id">The id of the account</param>
         /// <param name="compte">The new information of the account</param>

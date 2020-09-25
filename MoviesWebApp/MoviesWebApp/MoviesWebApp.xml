@@ -4,6 +4,17 @@
         <name>MoviesWebApp</name>
     </assembly>
     <members>
+        <member name="T:MoviesWebApp.Controllers.CompteController">
+            <summary>
+            Controller to manage accounts.
+            </summary>
+        </member>
+        <member name="M:MoviesWebApp.Controllers.CompteController.#ctor(MoviesWebApp.Models.Repository.IDataRepository{MoviesWebApp.Models.EntityFramework.Compte})">
+            <summary>
+            Constructor of CompteController.
+            </summary>
+            <param name="repository">The data repository</param>
+        </member>
         <member name="M:MoviesWebApp.Controllers.CompteController.GetAllCompte">
             <summary>
             Get all accounts
@@ -26,7 +37,7 @@
         </member>
         <member name="M:MoviesWebApp.Controllers.CompteController.PutCompte(System.Int32,MoviesWebApp.Models.EntityFramework.Compte)">
             <summary>
-            Updated an account.
+            Update an account.
             </summary>
             <param name="id">The id of the account</param>
             <param name="compte">The new information of the account</param>
@@ -37,6 +48,59 @@
             Adds an account to the database.
             </summary>
             <param name="compte">The new account</param>
+            <returns>HTTP Response</returns>
+        </member>
+        <member name="T:MoviesWebApp.Controllers.FilmController">
+            <summary>
+            Controller to manage movies.
+            </summary>
+        </member>
+        <member name="M:MoviesWebApp.Controllers.FilmController.#ctor(MoviesWebApp.Models.Repository.IDataRepository{MoviesWebApp.Models.EntityFramework.Film})">
+            <summary>
+            Constructor of FilmController
+            </summary>
+            <param name="repository">The data repository</param>
+        </member>
+        <member name="M:MoviesWebApp.Controllers.FilmController.GetAllFilm">
+            <summary>
+            Get all movies
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MoviesWebApp.Controllers.FilmController.GetFilmById(System.Int32)">
+            <summary>
+            Get a movie with its id.
+            </summary>
+            <param name="id">The id of the movie</param>
+            <returns>HTTP Response</returns>
+        </member>
+        <member name="M:MoviesWebApp.Controllers.FilmController.GetFilmByTitle(System.String)">
+            <summary>
+            Get a movie with its title.
+            </summary>
+            <param name="title">The title of the movie (case sensitive)</param>
+            <returns>HTTP Response</returns>
+        </member>
+        <member name="M:MoviesWebApp.Controllers.FilmController.PutFilm(System.Int32,MoviesWebApp.Models.EntityFramework.Film)">
+            <summary>
+            Update a movie.
+            </summary>
+            <param name="id">The id of the movie</param>
+            <param name="film">The new information of the movie</param>
+            <returns>HTTP Response</returns>
+        </member>
+        <member name="M:MoviesWebApp.Controllers.FilmController.PostFilm(MoviesWebApp.Models.EntityFramework.Film)">
+            <summary>
+            Adds a movie to the database.
+            </summary>
+            <param name="film">The new movie</param>
+            <returns>HTTP Response</returns>
+        </member>
+        <member name="M:MoviesWebApp.Controllers.FilmController.DeleteFilm(System.Int32)">
+            <summary>
+            Deletes a movie from the database.
+            </summary>
+            <param name="id">The id of the movie</param>
             <returns>HTTP Response</returns>
         </member>
     </members>
