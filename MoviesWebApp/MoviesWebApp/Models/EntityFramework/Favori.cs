@@ -1,22 +1,23 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace MoviesWebApp.Models.EntityFramework
 {
     [Table("T_J_FAVORI_FAV")]
     public class Favori
     {
-        [Key]
         [Column("CPT_ID")]
         public int CompteId { get; set; }
-        [Key]
         [Column("FLM_ID")]
         public int FilmId { get; set; }
-        [ForeignKey(nameof(Compte))]
         [InverseProperty("FavorisCompte")]
+        [ForeignKey("CompteId")]
+        [JsonIgnore]
         public virtual Compte CompteFavori { get; set; }
-        [ForeignKey(nameof(Film))]
         [InverseProperty("FavorisFilm")]
+        [ForeignKey("FilmId")]
+        [JsonIgnore]
         public virtual Film FilmFavori { get; set; }
     }
 }

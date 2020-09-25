@@ -21,13 +21,6 @@ namespace MoviesWebApp.Models.EntityFramework
         public virtual DbSet<Compte> Compte { get; set; }
         public virtual DbSet<Favori> Favori { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseNpgsql("Server=localhost;port=5432;Database=FilmsDBTP3; uid=postgres; password=postgres;");
-            }
-        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Compte>(entity =>

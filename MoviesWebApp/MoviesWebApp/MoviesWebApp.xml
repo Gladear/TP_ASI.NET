@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MoviesWebApp</name>
+    </assembly>
+    <members>
+        <member name="M:MoviesWebApp.Controllers.CompteController.GetCompte">
+            <summary>
+            Get all accounts
+            </summary>
+            <returns>HTTP Response</returns>
+        </member>
+        <member name="M:MoviesWebApp.Controllers.CompteController.GetCompteById(System.Int32)">
+            <summary>
+            Get an account with its id.
+            </summary>
+            <param name="id">The id of the account</param>
+            <returns>HTTP Response</returns>
+        </member>
+        <member name="M:MoviesWebApp.Controllers.CompteController.GetCompteByEmail(System.String)">
+            <summary>
+            Get an account with its email.
+            </summary>
+            <param name="email">The email of the account</param>
+            <returns>HTTP Response</returns>
+        </member>
+        <member name="M:MoviesWebApp.Controllers.CompteController.PutCompte(System.Int32,MoviesWebApp.Models.EntityFramework.Compte)">
+            <summary>
+            Updated an account.
+            </summary>
+            <param name="id">The id of the account</param>
+            <param name="compte">The new information of the account</param>
+            <returns>HTTP Response</returns>
+        </member>
+        <member name="M:MoviesWebApp.Controllers.CompteController.PostCompte(MoviesWebApp.Models.EntityFramework.Compte)">
+            <summary>
+            
+            </summary>
+            <param name="compte"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

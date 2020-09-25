@@ -31,6 +31,7 @@ namespace MoviesWebApp.Models.EntityFramework
         [Required]
         [Column("FLM_GENRE")]
         public string Genre { get; set; }
+        [Url]
         [Column("FLM_URLPHOTO")]
         public string UrlPhoto { get; set; }
         [InverseProperty("FilmFavori")]

@@ -25,11 +25,13 @@ namespace MoviesWebApp.Models.EntityFramework
         [StringLength(50)]
         [Column("CPT_PRENOM")]
         public string Prenom { get; set; }
+        [RegularExpression(@"^0[0-9]{9}$", ErrorMessage = "Invalid phone number")]
         [Column("CPT_TELPORTABLE", TypeName = "char(10)")]
         public string TelPortable { get; set; }
         [Required]
-        //[Index(IsUnique = True)]
-        [StringLength(100)]
+        [EmailAddress]
+        [Display(Name = "Email")]
+        [StringLength(100, MinimumLength = 6, ErrorMessage = "Email length must be between 6 and 100")]
         [Column("CPT_MEL")]
         public string Mel { get; set; }
         [StringLength(64)]
@@ -39,6 +41,7 @@ namespace MoviesWebApp.Models.EntityFramework
         [Column("CPT_RUE")]
         public string Rue { get; set; }
         [Required]
+        [StringLength(5, ErrorMessage = "Invalid postal code")]
         [Column("CPT_CP", TypeName = "char(5)")]
         public string CP { get; set; }
         [StringLength(50)]
