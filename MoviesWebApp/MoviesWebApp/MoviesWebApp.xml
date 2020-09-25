@@ -4,7 +4,7 @@
         <name>MoviesWebApp</name>
     </assembly>
     <members>
-        <member name="M:MoviesWebApp.Controllers.CompteController.GetCompte">
+        <member name="M:MoviesWebApp.Controllers.CompteController.GetAllCompte">
             <summary>
             Get all accounts
             </summary>
@@ -34,10 +34,10 @@
         </member>
         <member name="M:MoviesWebApp.Controllers.CompteController.PostCompte(MoviesWebApp.Models.EntityFramework.Compte)">
             <summary>
-            
+            Adds an account to the database.
             </summary>
-            <param name="compte"></param>
-            <returns></returns>
+            <param name="compte">The new account</param>
+            <returns>HTTP Response</returns>
         </member>
     </members>
 </doc>

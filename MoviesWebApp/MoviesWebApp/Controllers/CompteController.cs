@@ -27,7 +27,7 @@ namespace MoviesWebApp.Controllers
         // GET: api/Compte
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<Compte>>> GetCompte()
+        public async Task<ActionResult<IEnumerable<Compte>>> GetAllCompte()
         {
             return await _context.Compte.ToListAsync();
         }
