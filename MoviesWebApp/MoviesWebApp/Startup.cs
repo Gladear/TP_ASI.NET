@@ -6,7 +6,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using MoviesWebApp.Models.DataManager;
 using MoviesWebApp.Models.EntityFramework;
+using MoviesWebApp.Models.Repository;
 
 namespace MoviesWebApp
 {
@@ -28,6 +30,8 @@ namespace MoviesWebApp
             {
                 options.UseNpgsql(Configuration.GetConnectionString("FilmsDBContext"));
             });
+
+            services.AddScoped<IDataRepository<Compte>, CompteManager>();
 
             services.AddSwaggerGen(c =>
             {

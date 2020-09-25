@@ -3,9 +3,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoviesWebApp.Controllers;
 using MoviesWebApp.Models.EntityFramework;
+using MoviesWebApp.Models.Repository;
+using MoviesWebApp.Models.DataManager;
 using System;
 using System.Linq;
-using System.Linq.Expressions;
 
 namespace UnitTestMoviesWebApp
 {
@@ -14,13 +15,15 @@ namespace UnitTestMoviesWebApp
     {
         private FilmsDBContext _context;
         private CompteController _controller;
+        private IDataRepository<Compte> _dataRepository;
 
         [TestInitialize]
         public void InitializeTest()
         {
             var builder = new DbContextOptionsBuilder<FilmsDBContext>().UseNpgsql("Server=localhost;port=5432;Database=FilmsDBTP3; uid=postgres; password=postgres;");
             _context = new FilmsDBContext(builder.Options);
-            _controller = new CompteController(_context);
+            _dataRepository = new CompteManager(_context);
+            _controller = new CompteController(_dataRepository);
         }
 
         [TestMethod]
@@ -107,7 +110,7 @@ namespace UnitTestMoviesWebApp
                 Longitude = null
             };
             var got = _controller.PutCompte(-1, account).Result;
-            Assert.IsInstanceOfType(got, typeof(NotFoundObjectResult));
+            Assert.IsInstanceOfType(got, typeof(NotFoundResult));
         }
 
         [TestMethod]

@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using MoviesWebApp.Models.EntityFramework;
+using MoviesWebApp.Models.Repository;
 
 namespace MoviesWebApp.Controllers
 {
@@ -13,11 +11,11 @@ namespace MoviesWebApp.Controllers
     [ApiController]
     public class CompteController : ControllerBase
     {
-        private readonly FilmsDBContext _context;
+        private readonly IDataRepository<Compte> _dataRepository;
 
-        public CompteController(FilmsDBContext context)
+        public CompteController(IDataRepository<Compte> repository)
         {
-            _context = context;
+            _dataRepository = repository;
         }
 
         /// <summary>
@@ -29,7 +27,7 @@ namespace MoviesWebApp.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<Compte>>> GetAllCompte()
         {
-            return await _context.Compte.ToListAsync();
+            return await _dataRepository.GetAll();
         }
 
         /// <summary>
@@ -43,9 +41,9 @@ namespace MoviesWebApp.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Compte>> GetCompteById(int id)
         {
-            var compte = await _context.Compte.Include(c => c.FavorisCompte).SingleOrDefaultAsync(c => c.CompteId == id);
+            var compte = await _dataRepository.GetById(id);
 
-            if (compte == null)
+            if (compte.Value == null)
             {
                 return NotFound("Compte not found");
             }
@@ -64,9 +62,9 @@ namespace MoviesWebApp.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Compte>> GetCompteByEmail(string email)
         {
-            var compte = await _context.Compte.FirstOrDefaultAsync(c => c.Mel == email);
-            
-            if (compte == null)
+            var compte = await _dataRepository.GetByString(email);
+
+            if (compte.Value == null)
             {
                 return NotFound("Compte not found");
             }
@@ -94,24 +92,12 @@ namespace MoviesWebApp.Controllers
                 return BadRequest("Ids not matching");
             }
 
-            _context.Entry(compte).State = EntityState.Modified;
-
-            try
+            var compteToUpdate = await _dataRepository.GetById(id);
+            if (compteToUpdate.Value == null)
             {
-                await _context.SaveChangesAsync();
+                return NotFound();
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!CompteExists(id))
-                {
-                    return NotFound("Compte not found");
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
+            await _dataRepository.Update(compteToUpdate.Value, compte);
             return NoContent();
         }
 
@@ -127,9 +113,7 @@ namespace MoviesWebApp.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult<Compte>> PostCompte(Compte compte)
         {
-            _context.Compte.Add(compte);
-            await _context.SaveChangesAsync();
-
+            await _dataRepository.Add(compte);
             return CreatedAtAction("GetCompte", new { id = compte.CompteId }, compte);
         }
 
@@ -137,21 +121,15 @@ namespace MoviesWebApp.Controllers
         //[HttpDelete("{id}")]
         //public async Task<ActionResult<Compte>> DeleteCompte(int id)
         //{
-        //    var compte = await _context.Compte.FindAsync(id);
+        //    var compte = _manager.GetById(id);
         //    if (compte == null)
         //    {
         //        return NotFound("Compte not found");
         //    }
 
-        //    _context.Compte.Remove(compte);
-        //    await _context.SaveChangesAsync();
+        //    _manager.Delete(compte.Value);
 
         //    return compte;
         //}
-
-        private bool CompteExists(int id)
-        {
-            return _context.Compte.Any(e => e.CompteId == id);
-        }
     }
 }
