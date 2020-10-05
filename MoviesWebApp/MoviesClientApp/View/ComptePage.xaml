@@ -1,0 +1,82 @@
+﻿<Page
+    x:Class="MoviesClientApp.View.ComptePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MoviesClientApp.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    DataContext="{Binding Compte, Source={StaticResource Locator}}">
+
+    <RelativePanel HorizontalAlignment="Stretch">
+        <TextBlock Name="Title" Text="Recherche d'un compte"
+                   Margin="0,0,0,64"
+                   FontSize="36" />
+
+        <TextBlock Name="LabelSearch" Text="Mail"
+                   RelativePanel.AlignVerticalCenterWith="BoxSearch" RelativePanel.LeftOf="BoxSearch"
+                   FontSize="16" />
+        <TextBox Name="BoxSearch" Text="{Binding Search, Mode=TwoWay}"
+                 Width="200" Margin="16,0,16,0"
+                 RelativePanel.Below="Title" RelativePanel.AlignHorizontalCenterWithPanel="True"
+                 FontSize="16" />
+        <Button Name="BtnSearch" Content="Rechercher"
+                Command="{Binding BtnSearch_Click}"
+                RelativePanel.AlignVerticalCenterWith="BoxSearch" RelativePanel.RightOf="BoxSearch"
+                FontSize="16" />
+
+        <TextBlock Name="LabelSurname" Text="Nom"
+                   Margin="0,16,0,0"
+                   RelativePanel.Below="LabelSearch" RelativePanel.AlignHorizontalCenterWithPanel="True" />
+        <TextBox Name="BoxSurname" Text="{Binding Compte.Nom, Mode=TwoWay}"
+                 Width="200" Margin="0,0,8,0"
+                 RelativePanel.Below="LabelSurname" RelativePanel.AlignHorizontalCenterWithPanel="True" />
+
+        <TextBlock Name="LabelName" Text="¨Prenom"
+                   Margin="0,16,0,0"
+                   RelativePanel.Below="BoxSurname" RelativePanel.AlignHorizontalCenterWithPanel="True" />
+        <TextBox Name="BoxName" Text="{Binding Compte.Prenom, Mode=TwoWay}"
+                 Width="200" Margin="0,0,8,0"
+                 RelativePanel.Below="LabelName" RelativePanel.AlignHorizontalCenterWithPanel="True" />
+
+        <TextBlock Name="LabelPhone" Text="Portable"
+                   Margin="0,16,0,0"
+                   RelativePanel.Below="BoxName" RelativePanel.AlignHorizontalCenterWithPanel="True" />
+        <TextBox Name="BoxPhone" Text="{Binding Compte.TelPortable, Mode=TwoWay}"
+                 Width="200" Margin="0,0,8,0"
+                 RelativePanel.Below="LabelPhone" RelativePanel.AlignHorizontalCenterWithPanel="True" />
+
+        <TextBlock Name="LabelEmail" Text="Mail"
+                   Margin="0,16,0,0"
+                   RelativePanel.Below="BoxPhone" RelativePanel.AlignHorizontalCenterWithPanel="True" />
+        <TextBox Name="BoxEmail" Text="{Binding Compte.Mel, Mode=TwoWay}"
+                 Width="400" Margin="0,0,8,0"
+                 RelativePanel.Below="LabelEmail" RelativePanel.AlignHorizontalCenterWithPanel="True" />
+
+        <TextBlock Name="LabelAddress" Text="Adresse (Rue, Code Postal, Ville, Pays)"
+                   Margin="0,16,0,0"
+                   RelativePanel.Below="BoxEmail" RelativePanel.AlignHorizontalCenterWithPanel="True" />
+        <TextBox Name="BoxRoad" Text="{Binding Compte.Rue, Mode=TwoWay}"
+                 Width="400" Margin="0,0,8,0"
+                 RelativePanel.Below="LabelAddress" RelativePanel.AlignHorizontalCenterWithPanel="True" />
+        <TextBox Name="BoxPostalCode" Text="{Binding Compte.CP, Mode=TwoWay}"
+                 Width="100" Margin="0,0,8,0"
+                 RelativePanel.Below="BoxRoad" RelativePanel.AlignHorizontalCenterWithPanel="True" />
+        <TextBox Name="BoxCity" Text="{Binding Compte.Ville, Mode=TwoWay}"
+                 Width="200" Margin="0,0,8,0"
+                 RelativePanel.Below="BoxPostalCode" RelativePanel.AlignHorizontalCenterWithPanel="True" />
+        <TextBox Name="BoxCountry" Text="{Binding Compte.Pays, Mode=TwoWay}"
+                 Width="200" Margin="0,0,8,0"
+                 RelativePanel.Below="BoxCity" RelativePanel.AlignHorizontalCenterWithPanel="True" />
+
+        <CommandBar x:Name="AppCommandBar"
+                    RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Name="Save" Icon="Save" Label="Save" />
+                <AppBarButton Name="Clear" Icon="ClearSelection" Label="Clear" />
+                <AppBarButton Name="Add" Icon="Add" Label="Add" />
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </RelativePanel>
+</Page>

@@ -119,6 +119,15 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Compte.cs" />
+    <Compile Include="Models\Favori.cs" />
+    <Compile Include="Models\Film.cs" />
+    <Compile Include="Services\WSService.cs" />
+    <Compile Include="ViewModel\CompteViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="View\ComptePage.xaml.cs">
+      <DependentUpon>ComptePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\RootPage.xaml.cs">
       <DependentUpon>RootPage.xaml</DependentUpon>
     </Compile>
@@ -147,6 +156,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="View\ComptePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\RootPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

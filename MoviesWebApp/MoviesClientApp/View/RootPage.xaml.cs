@@ -46,17 +46,16 @@ namespace MoviesClientApp
 
         private void Home_Click(object sender, RoutedEventArgs e)
         {
-
+            (MySplitView.Content as Frame).Navigate(typeof(HomePage));
         }
 
         private void Movies_Click(object sender, RoutedEventArgs e)
         {
-
         }
 
         private void Account_Click(object sender, RoutedEventArgs e)
         {
-
+            (MySplitView.Content as Frame).Navigate(typeof(ComptePage));
         }
 
         private void Settings_Click(object sender, RoutedEventArgs e)
