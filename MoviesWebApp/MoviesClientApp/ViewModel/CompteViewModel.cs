@@ -36,10 +36,12 @@ namespace MoviesClientApp.ViewModel
 
 
         public ICommand BtnSearch_Click { get; private set; }
+        public ICommand Clear_Click { get; private set; }
 
         public CompteViewModel()
         {
             BtnSearch_Click = new RelayCommand(ActionSearch);
+            Clear_Click = new RelayCommand(ActionClear);
         }
 
         private async void ActionSearch()
@@ -59,6 +61,11 @@ namespace MoviesClientApp.ViewModel
                 return;
             }
             Compte = compte;
+        }
+
+        private void ActionClear()
+        {
+            Compte = null;
         }
     }
 }
