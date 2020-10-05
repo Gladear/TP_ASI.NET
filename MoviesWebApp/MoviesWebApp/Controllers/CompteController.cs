@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MoviesWebApp.Models.EntityFramework;
 using MoviesWebApp.Models.Repository;
 
@@ -120,12 +121,14 @@ namespace MoviesWebApp.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult<Compte>> PostCompte(Compte compte)
         {
-            var existing = _dataRepository.GetByString(compte.Mel);
-            if (existing != null)
+            try
             {
-                return Forbid();
+                await _dataRepository.Add(compte);
             }
-            await _dataRepository.Add(compte);
+            catch (DbUpdateException)
+            {
+                return Conflict("Un compte avec cette adresse email existe déjà");
+            }
             return CreatedAtAction("PostCompte", new { id = compte.CompteId }, compte);
         }
 

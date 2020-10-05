@@ -41,14 +41,14 @@
         <TextBox Name="BoxEmail" Text="{Binding Compte.Mel, Mode=TwoWay}"
                  Width="400" Margin="0,0,8,0"
                  RelativePanel.Below="LabelEmail" RelativePanel.AlignHorizontalCenterWithPanel="True" />
-
+        
         <TextBlock Name="LabelPassword" Text="Mot de passe"
                    Margin="0,0,16,0"
                    RelativePanel.Below="BoxEmail" RelativePanel.AlignHorizontalCenterWithPanel="True" />
         <PasswordBox Name="BoxPassword" Password="{Binding Compte.Pwd, Mode=TwoWay}"
                  Width="200" Margin="0,0,8,0"
                  RelativePanel.Below="LabelPassword" RelativePanel.AlignHorizontalCenterWithPanel="True" />
-        
+
         <TextBlock Name="LabelAddress" Text="Adresse (Rue, Code Postal, Ville, Pays)"
                    Margin="0,16,0,0"
                    RelativePanel.Below="BoxPassword" RelativePanel.AlignHorizontalCenterWithPanel="True" />

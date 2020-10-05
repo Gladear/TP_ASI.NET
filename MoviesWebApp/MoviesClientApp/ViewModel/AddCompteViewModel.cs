@@ -29,15 +29,15 @@ namespace MoviesClientApp.ViewModel
         public AddCompteViewModel()
         {
             _compte = new Compte();
-            _compte.Nom = "PINEL";
-            _compte.Prenom = "Marie";
+            _compte.Nom = "EXAPLE";
+            _compte.Prenom = "Some";
             _compte.TelPortable = "0601020304";
-            _compte.Mel = "marie.pinelle@example.com";
+            _compte.Mel = "some.example@example.com";
             _compte.Pwd = "azerty";
-            _compte.Rue = "a";
-            _compte.CP = "69000";
-            _compte.Ville = "b";
-            _compte.Pays = "c";
+            _compte.Rue = "Rue de la République";
+            _compte.CP = "69001";
+            _compte.Ville = "Lyon";
+            _compte.Pays = "France";
 
             Save_Click = new RelayCommand(ActionSave);
             Clear_Click = new RelayCommand(ActionClear);
@@ -47,8 +47,9 @@ namespace MoviesClientApp.ViewModel
         {
             try
             {
+                await WSBingMaps.FillCompteLocation(Compte);
                 await WSService.CreateCompte(Compte);
-                await ShowDialog($"Compte {Compte.Nom} créé !");
+                await ShowDialog($"Compte {Compte.Nom} (localisé {Compte.Latitude}/{Compte.Longitude}) créé !");
             }
             catch (Exception e)
             {
