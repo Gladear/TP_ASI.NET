@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="MoviesClientApp.View.ComptePage"
+    x:Class="MoviesClientApp.View.AddComptePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:MoviesClientApp.View"
@@ -7,28 +7,16 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-    DataContext="{Binding Compte, Source={StaticResource Locator}}">
+    DataContext="{Binding AddCompte, Source={StaticResource Locator}}">
 
     <RelativePanel HorizontalAlignment="Stretch">
-        <TextBlock Name="Title" Text="Recherche d'un compte"
+        <TextBlock Name="Title" Text="Création d'un compte"
                    Margin="0,0,0,64"
                    FontSize="36" />
 
-        <TextBlock Name="LabelSearch" Text="Mail"
-                   RelativePanel.AlignVerticalCenterWith="BoxSearch" RelativePanel.LeftOf="BoxSearch"
-                   FontSize="16" />
-        <TextBox Name="BoxSearch" Text="{Binding Search, Mode=TwoWay}"
-                 Width="200" Margin="16,0,16,0"
-                 RelativePanel.Below="Title" RelativePanel.AlignHorizontalCenterWithPanel="True"
-                 FontSize="16" />
-        <Button Name="BtnSearch" Content="Rechercher"
-                Command="{Binding BtnSearch_Click}"
-                RelativePanel.AlignVerticalCenterWith="BoxSearch" RelativePanel.RightOf="BoxSearch"
-                FontSize="16" />
-
         <TextBlock Name="LabelSurname" Text="Nom"
                    Margin="0,16,0,0"
-                   RelativePanel.Below="LabelSearch" RelativePanel.AlignHorizontalCenterWithPanel="True" />
+                   RelativePanel.Below="Title" RelativePanel.AlignHorizontalCenterWithPanel="True" />
         <TextBox Name="BoxSurname" Text="{Binding Compte.Nom, Mode=TwoWay}"
                  Width="200" Margin="0,0,8,0"
                  RelativePanel.Below="LabelSurname" RelativePanel.AlignHorizontalCenterWithPanel="True" />
@@ -54,9 +42,16 @@
                  Width="400" Margin="0,0,8,0"
                  RelativePanel.Below="LabelEmail" RelativePanel.AlignHorizontalCenterWithPanel="True" />
 
+        <TextBlock Name="LabelPassword" Text="Mot de passe"
+                   Margin="0,0,16,0"
+                   RelativePanel.Below="BoxEmail" RelativePanel.AlignHorizontalCenterWithPanel="True" />
+        <PasswordBox Name="BoxPassword" Password="{Binding Compte.Pwd, Mode=TwoWay}"
+                 Width="200" Margin="0,0,8,0"
+                 RelativePanel.Below="LabelPassword" RelativePanel.AlignHorizontalCenterWithPanel="True" />
+        
         <TextBlock Name="LabelAddress" Text="Adresse (Rue, Code Postal, Ville, Pays)"
                    Margin="0,16,0,0"
-                   RelativePanel.Below="BoxEmail" RelativePanel.AlignHorizontalCenterWithPanel="True" />
+                   RelativePanel.Below="BoxPassword" RelativePanel.AlignHorizontalCenterWithPanel="True" />
         <TextBox Name="BoxRoad" Text="{Binding Compte.Rue, Mode=TwoWay}"
                  Width="400" Margin="0,0,8,0"
                  RelativePanel.Below="LabelAddress" RelativePanel.AlignHorizontalCenterWithPanel="True" />
@@ -77,8 +72,6 @@
                               Command="{Binding Save_Click}" />
                 <AppBarButton Name="Clear" Icon="ClearSelection" Label="Clear"
                               Command="{Binding Clear_Click}" />
-                <AppBarButton Name="Add" Icon="Add" Label="Add"
-                              Command="{Binding Add_Click}"/>
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </RelativePanel>

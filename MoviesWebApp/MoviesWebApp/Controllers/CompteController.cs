@@ -120,8 +120,13 @@ namespace MoviesWebApp.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<ActionResult<Compte>> PostCompte(Compte compte)
         {
+            var existing = _dataRepository.GetByString(compte.Mel);
+            if (existing != null)
+            {
+                return Forbid();
+            }
             await _dataRepository.Add(compte);
-            return CreatedAtAction("GetCompte", new { id = compte.CompteId }, compte);
+            return CreatedAtAction("PostCompte", new { id = compte.CompteId }, compte);
         }
 
         // DELETE: api/Compte/5

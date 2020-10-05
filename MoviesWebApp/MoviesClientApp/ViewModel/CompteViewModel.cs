@@ -1,11 +1,14 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MoviesClientApp.Services;
+using MoviesClientApp.View;
 using MoviesWebApp.Models.EntityFramework;
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Popups;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace MoviesClientApp.ViewModel
 {
@@ -37,14 +40,16 @@ namespace MoviesClientApp.ViewModel
 
 
         public ICommand BtnSearch_Click { get; private set; }
-        public ICommand Save_Click { get; set; }
+        public ICommand Save_Click { get; private set; }
         public ICommand Clear_Click { get; private set; }
+        public ICommand Add_Click { get; private set; }
 
         public CompteViewModel()
         {
             BtnSearch_Click = new RelayCommand(ActionSearch);
             Save_Click = new RelayCommand(ActionSave);
             Clear_Click = new RelayCommand(ActionClear);
+            Add_Click = new RelayCommand(ActionAdd);
         }
 
         private async void ActionSearch()
@@ -85,6 +90,13 @@ namespace MoviesClientApp.ViewModel
         private void ActionClear()
         {
             Compte = null;
+        }
+
+        private void ActionAdd()
+        {
+            var r = (RootPage)Window.Current.Content;
+            var sv = (SplitView)r.Content;
+            (sv.Content as Frame).Navigate(typeof(AddComptePage));
         }
 
         private async Task ShowDialog(string text)

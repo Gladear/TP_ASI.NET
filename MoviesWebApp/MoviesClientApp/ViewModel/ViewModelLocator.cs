@@ -16,11 +16,16 @@ namespace MoviesClientApp.ViewModel
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
             SimpleIoc.Default.Register<CompteViewModel>();
+            SimpleIoc.Default.Register<AddCompteViewModel>();
         }
 
         /// <summary>
         /// Get the Compte property.
         /// </summary>
         public CompteViewModel Compte => ServiceLocator.Current.GetInstance<CompteViewModel>();
+        /// <summary>
+        /// Get the AddCompte property
+        /// </summary>
+        public AddCompteViewModel AddCompte => ServiceLocator.Current.GetInstance<AddCompteViewModel>();
     }
 }

@@ -26,5 +26,14 @@ namespace MoviesClientApp.Services
                 throw new System.Exception(response.ReasonPhrase);
             }
         }
+
+        public async static Task CreateCompte(Compte compte)
+        {
+            var response = await _client.PostAsJsonAsync("http://localhost:5000/api/Compte", compte);
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new System.Exception(response.ReasonPhrase);
+            }
+        }
     }
 }
