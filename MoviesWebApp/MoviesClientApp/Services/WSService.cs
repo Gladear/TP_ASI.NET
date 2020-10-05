@@ -17,5 +17,14 @@ namespace MoviesClientApp.Services
             }
             return await response.Content.ReadAsAsync<Compte>();
         }
+
+        public async static Task UpdateCompte(Compte compte)
+        {
+            var response = await _client.PutAsJsonAsync($"http://localhost:5000/api/Compte/{compte.CompteId}", compte);
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new System.Exception(response.ReasonPhrase);
+            }
+        }
     }
 }

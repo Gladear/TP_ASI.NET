@@ -73,7 +73,8 @@
         <CommandBar x:Name="AppCommandBar"
                     RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True">
             <CommandBar.PrimaryCommands>
-                <AppBarButton Name="Save" Icon="Save" Label="Save" />
+                <AppBarButton Name="Save" Icon="Save" Label="Save"
+                              Command="{Binding Save_Click}" />
                 <AppBarButton Name="Clear" Icon="ClearSelection" Label="Clear"
                               Command="{Binding Clear_Click}" />
                 <AppBarButton Name="Add" Icon="Add" Label="Add" />
